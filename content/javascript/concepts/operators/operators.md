@@ -163,6 +163,71 @@ variable = condition ? assignedIfTrue : assignedIfFalse;
 
 This operator combines the functionalities of the assignment, comparison, and logical operators.
 
+The ternary operator can also perform multiple steps based on a certain condition, similar to an `if...else` condition statement.
+
+The key point to focus on is the syntax. Pay special attention to where the `()`s are placed. A developer may make the mistake of using too many `()`s or placing the `()`s incorrectly.
+
+### Multi-Step Ternary Operator Examples
+
+For example, the following `if...else` statement...
+
+```js
+let i = true;
+let a = 0;
+let b = 0;
+
+if (i == true) {
+    a++;
+    b++;
+} else {
+    a = 0;
+    b = 0;
+}
+```
+
+...can be translated into the following two-step ternary operator!
+
+```js
+let i = true;
+let a = 0;
+let b = 0;
+
+i == true ? (a++, b++) : (a = 0, b = 0);
+console.log('a = ', a, 'b = ', b);
+```
+
+The ternary operator can also perform as many steps as you need.
+
+```js
+let i = true;
+let a = 0;
+let b = 0;
+let c = 0;
+// ...
+
+i == true ? (a++, b++, c++) : (a = 0, b = 0, c = 0);
+console.log('a = ', a, 'b = ', b, 'c = ', c);
+```
+
+The following ternary operator will result in a SyntaxError. Do you see why?
+
+```js
+let i = true;
+
+// This implementation will fail
+i == true ? (a++), (b++) : (a = 0), (b = 0);
+console.log('a = ', a, 'b = ', b);
+
+// Output:
+// i == true ? (a++), (b++) : (a = 0), (b = 0);
+//                  ^
+// SyntaxError: Unexpected token ','
+```
+> Hint: check how the `()`s were implemented.
+
+
+Although ternary operator and `if...else` condition performance speeds are [roughly the same](https://stackoverflow.com/questions/2586842/is-ternary-operator-if-else-or-logical-or-faster-in-javascript#:~:text=test%20was%20fair-,Here%27s%20my%20jsperf,-result%3A), using multi-step ternary operators can help consolidate several lines of code, thus reducing file size and download time in the browser.
+
 ### Codebyte Example
 
 The following example showcases the conditional operator:
